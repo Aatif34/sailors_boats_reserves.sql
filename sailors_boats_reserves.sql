@@ -59,68 +59,68 @@ INSERT INTO Reserves VALUES
 (64, 102, '2025-02-02'),
 (74, 103, '2025-03-01');
 
--- 4. Basic Queries
--- Select all sailors
-SELECT * FROM Sailors;
+-- 4. basic queries
+-- select all sailors
+select * from sailors;
 
--- Select sailors with age > 30
-SELECT * FROM Sailors WHERE age > 30;
+-- select sailors with age > 30
+select * from sailors where age > 30;
 
--- Order sailors by age ascending
-SELECT * FROM Sailors ORDER BY age ASC;
+-- order sailors by age ascending
+select * from sailors order by age asc;
 
--- Sailors with rating > 5
-SELECT * FROM Sailors WHERE rating > 5;
+-- sailors with rating > 5
+select * from sailors where rating > 5;
 
--- Boats of color red
-SELECT * FROM Boats WHERE color = 'red';
+-- boats of color red
+select * from boats where color = 'red';
 
--- Reservations in January 2025
-SELECT * FROM Reserves
-WHERE day >= '2025-01-01' AND day < '2025-02-01';
+-- reservations in january 2025
+select * from reserves
+where day >= '2025-01-01' and day < '2025-02-01';
 
--- Sailors whose name starts with 'H'
-SELECT * FROM Sailors WHERE sname LIKE 'H%';
+-- sailors whose name starts with 'h'
+select * from sailors where sname like 'h%';
 
--- Distinct boat colors
-SELECT DISTINCT color FROM Boats;
+-- distinct boat colors
+select distinct color from boats;
 
--- Oldest sailor
-SELECT * FROM Sailors ORDER BY age DESC LIMIT 1;
+-- oldest sailor
+select * from sailors order by age desc limit 1;
 
--- Youngest sailor
-SELECT * FROM Sailors ORDER BY age ASC LIMIT 1;
+-- youngest sailor
+select * from sailors order by age asc limit 1;
 
--- Count of sailors with rating 10
-SELECT COUNT(*) FROM Sailors WHERE rating = 10;
+-- count of sailors with rating 10
+select count(*) from sailors where rating = 10;
 
--- Top 3 oldest sailors
-SELECT * FROM Sailors ORDER BY age DESC LIMIT 3;
+-- top 3 oldest sailors
+select * from sailors order by age desc limit 3;
 
--- Sailors aged between 20 and 40
-SELECT * FROM Sailors WHERE age BETWEEN 20 AND 40;
+-- sailors aged between 20 and 40
+select * from sailors where age between 20 and 40;
 
--- Sailors whose name contains 'o'
-SELECT * FROM Sailors WHERE sname LIKE '%o%';
+-- sailors whose name contains 'o'
+select * from sailors where sname like '%o%';
 
--- Count of reservations
-SELECT COUNT(*) FROM Reserves;
+-- count of reservations
+select count(*) from reserves;
 
--- Join sailors, boats, and reserves
-SELECT s.sname, b.bname, r.bid, s.sid, r.day
-FROM Sailors s
-JOIN Reserves r ON s.sid = r.sid
-JOIN Boats b ON r.bid = b.bid;
+-- join sailors, boats, and reserves
+select s.sname, b.bname, r.bid, s.sid, r.day
+from sailors s
+join reserves r on s.sid = r.sid
+join boats b on r.bid = b.bid;
 
--- Boats reserved by 'Dustin'
-SELECT b.bname, s.sname
-FROM Boats b
-JOIN Reserves r ON b.bid = r.bid
-JOIN Sailors s ON r.sid = s.sid
-WHERE s.sname = 'Dustin';
+-- boats reserved by 'dustin'
+select b.bname, s.sname
+from boats b
+join reserves r on b.bid = r.bid
+join sailors s on r.sid = s.sid
+where s.sname = 'dustin';
 
--- Count of boats reserved by each sailor
-SELECT s.sname, COUNT(r.bid) AS total_boats
-FROM Sailors s
-LEFT JOIN Reserves r ON s.sid = r.sid
-GROUP BY s.sid, s.sname;
+-- count of boats reserved by each sailor
+select s.sname, count(r.bid) as total_boats
+from sailors s
+left join reserves r on s.sid = r.sid
+group by s.sid, s.sname;
